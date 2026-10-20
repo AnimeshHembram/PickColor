@@ -20,11 +20,13 @@ A small, private color picker that runs in your browser. Pick a color, get its H
 PickColor is plain HTML, CSS and JavaScript with nothing to install or build.
 
 - **Quickest:** double-click `index.html` to open it in your browser. Everything works this way.
-- **Closest to the live site:** serve the folder with any static server, then open <http://localhost:8000/>:
+- **Closest to the live site:** run the preview server, then open <http://localhost:8000/>:
 
   ```bash
-  python -m http.server 8000
+  python tools/serve.py
   ```
+
+  It always serves this project folder (whichever folder you start it from) and turns off browser caching, so you never see an outdated copy. Plain `python -m http.server` also works, but only when started inside the project folder, and the browser may cache old files.
 
 ## Run the tests
 
@@ -46,6 +48,7 @@ js/eyedropper.js    Optional screen eyedropper
 js/palette.js       Recent colors, palette storage and export
 js/clipboard.js     Copy with fallback
 tests/              Browser-native tests and fixtures
+tools/serve.py      Local preview server (no caching); not used by the live site
 docs/               Brief, architecture, roadmap, testing checklist
 ```
 
