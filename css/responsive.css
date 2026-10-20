@@ -1,0 +1,93 @@
+/* Narrow-viewport adjustments. Base styles live in styles.css. */
+
+/* Tablet and small laptop: stack into one column, swatch first */
+@media (max-width: 860px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "color"
+      "sampler"
+      "palette";
+  }
+
+  .swatch {
+    min-height: clamp(11rem, 30vh, 16rem);
+  }
+}
+
+/* Phones */
+@media (max-width: 520px) {
+  .masthead {
+    padding: var(--space-4) var(--space-4) var(--space-3);
+  }
+
+  .brand h1 {
+    font-size: var(--step-1);
+  }
+
+  .theme-switch span {
+    padding: 0.3rem 0.6rem;
+  }
+
+  .workspace {
+    gap: var(--space-4);
+    padding: 0 var(--space-4) var(--space-5);
+  }
+
+  .panel {
+    padding: var(--space-4);
+    gap: var(--space-4);
+  }
+
+  .swatch {
+    padding: var(--space-4);
+  }
+
+  .choose {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .color-well {
+    grid-template-columns: auto 1fr;
+    justify-items: start;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .color-well input {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .contrast__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dropzone__empty {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .loupe {
+    width: 72px;
+    height: 72px;
+  }
+
+  .palette-item {
+    grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+  }
+
+  .palette-item__hex {
+    display: none;
+  }
+
+  .footer {
+    padding: 0 var(--space-4) var(--space-5);
+  }
+}
+
+/* Very narrow screens (320 px): let the theme switch wrap under the name */
+@media (max-width: 360px) {
+  .masthead {
+    flex-wrap: wrap;
+  }
+}

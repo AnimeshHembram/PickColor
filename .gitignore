@@ -1,11 +1,36 @@
+# PickColor is a static site: nothing here needs building.
+# Keep local environments, caches, secrets and OS/editor files out of Git.
+
+# Local environments (including the retired Python prototype)
 .venv/
+venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .ruff_cache/
-.coverage
-htmlcov/
+
+# JavaScript tooling (not used, kept as a safeguard)
+node_modules/
+
+# Generated output
 dist/
 build/
-*.egg-info/
+coverage/
+htmlcov/
+*.log
+
+# Secrets
 .env
+.env.*
+
+# Archives and scratch files
+*.zip
+_to_delete/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp

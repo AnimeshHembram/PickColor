@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>PickColor tests</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 1.5rem;
+        font-family: system-ui, sans-serif;
+        background: Canvas;
+        color: CanvasText;
+      }
+      h1 {
+        font-size: 1.4rem;
+        margin: 0 0 0.5rem;
+      }
+      #summary {
+        font-weight: 650;
+        margin: 0 0 1rem;
+      }
+      ol {
+        padding-left: 1.5rem;
+        font-family: ui-monospace, Consolas, monospace;
+        font-size: 0.875rem;
+      }
+      li.fail {
+        font-weight: 700;
+      }
+      li span {
+        display: block;
+        font-weight: 400;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>PickColor tests</h1>
+    <p id="summary" role="status">Running…</p>
+    <ol id="results"></ol>
+    <!-- Plain scripts, so this page also works when opened straight from disk.
+         Keep the order in step with tests/scripts.mjs. -->
+    <script src="../js/color-utils.js"></script>
+    <script src="../js/image-picker.js"></script>
+    <script src="../js/palette.js"></script>
+    <script src="../js/eyedropper.js"></script>
+    <script src="./harness.js"></script>
+    <script src="./color-utils.test.js"></script>
+    <script src="./image-picker.test.js"></script>
+    <script src="./palette.test.js"></script>
+    <script src="./eyedropper.test.js"></script>
+    <script>
+      (async function () {
+        const results = await window.PickColor.testHarness.run();
+        const failed = results.filter((result) => !result.ok);
+        const list = document.getElementById("results");
+
+        for (const result of results) {
+          const item = document.createElement("li");
+          item.className = result.ok ? "pass" : "fail";
+          item.textContent = (result.ok ? "pass" : "FAIL") + " — " + result.name;
+          if (!result.ok) {
+            const detail = document.createElement("span");
+            detail.textContent = result.message;
+            item.append(detail);
+          }
+          list.append(item);
+        }
+
+        document.getElementById("summary").textContent =
+          (results.length - failed.length) + " passed, " + failed.length + " failed";
+        document.title = (failed.length ? "✗" : "✓") + " PickColor tests";
+        window.__testResults = results;
+      })();
+    </script>
+  </body>
+</html>
