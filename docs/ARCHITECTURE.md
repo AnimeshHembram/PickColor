@@ -33,8 +33,6 @@ PickColor/
 │   ├── eyedropper.js
 │   ├── image-picker.js
 │   ├── palette.js
-│   ├── theme.js
-│   ├── theme-init.js
 │   └── clipboard.js
 ├── tests/
 │   ├── index.html        (browser test runner)
@@ -73,9 +71,6 @@ Feature detection and wrapper for the browser EyeDropper API. Handle cancellatio
 ### `js/image-picker.js`
 Read a user-selected local image, display it, and sample pixels from the source image. Account for scaling, letterboxing, device pixel ratio, and pointer coordinates. Keep image data local to the browser and do not upload it.
 
-### `js/theme.js` and `js/theme-init.js`
-`theme-init.js` is a tiny classic script loaded in `<head>` that applies a saved light/dark choice before first paint, so there is no flash of the wrong theme. `theme.js` wires the System/Light/Dark control and saves the choice when storage is available.
-
 ### `js/clipboard.js`
 Copies text with the async Clipboard API, falling back to a temporary textarea where that API is unavailable or denied. Never throws.
 
@@ -91,7 +86,7 @@ As built: recent colors are kept in memory for the visit; the palette (name + HE
 - **Pixel sampling:** the image is drawn at natural size on a canvas shown with `object-fit: contain`; pointer positions are mapped back using the canvas's CSS box, which handles scaling, letterboxing and device pixel ratio. Mouse positions arrive as whole CSS pixels, so on upscaled images the arrow keys give single-pixel precision.
 - **Images over 50 megapixels** are refused with a message, because very large canvases fail in some browsers.
 - **URL hash:** the current HEX is mirrored in the address bar (`#3A6FF7`) so a link reopens the same color.
-- **Visual design:** the interface is strictly neutral grey so the selected color is the only chroma on screen and the surroundings don't skew how it looks.
+- **Visual design:** the interface is strictly black and white, so the selected color is the only chroma on screen and the surroundings don't skew how it looks.
 
 ## 5. Data flow
 1. A user selects a color, samples an image, or uses EyeDropper where supported.
@@ -102,11 +97,10 @@ As built: recent colors are kept in memory for the visit; the palette (name + HE
 6. Optional recent-color/palette features store only the data required for that feature, locally.
 
 ## 6. Theme behavior
-- Default to the operating system preference using `prefers-color-scheme`.
-- Provide an accessible manual toggle.
-- Store an explicit user choice in local storage only if storage is available.
-- If no explicit choice exists, continue following the system preference.
-- Use CSS variables rather than duplicating whole stylesheets.
+- Black and white only: pure white background with black text, switching to pure black with white text when `prefers-color-scheme: dark`. Greys appear only for hairlines and secondary text.
+- There is no manual theme switch (removed at the owner's request, replacing P0 item 7 of the brief), so nothing about the theme is stored.
+- All colors are CSS variables on `:root`, redefined in one `prefers-color-scheme: dark` block.
+- Without a red, errors are marked by a ⚠ prefix, heavier text and a dashed field border rather than by color.
 
 ## 7. Browser and security constraints
 - GitHub Pages is static hosting; do not rely on server-side code.
@@ -125,7 +119,7 @@ Use any simple static server to serve the repository root. Do not run Python app
 - Unit-check pure color conversion functions with known values (black, white, primaries, and edge cases).
 - Manually verify image sampling at corners and center for an image displayed at different sizes.
 - Test clipboard success and failure states.
-- Test theme default, manual toggle, and persisted override.
+- Test that the theme follows the system light/dark setting in black and white.
 - Test EyeDropper supported and unsupported paths, including cancellation.
 - Check browser console and network panel for unexpected errors or outbound requests.
 - Test responsive layout and keyboard navigation.

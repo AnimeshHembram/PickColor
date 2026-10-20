@@ -1,28 +1,26 @@
 /*
  * PickColor base styles.
  *
- * Design rule: the interface is strictly neutral grey (zero chroma), like a
- * photographer's grey card, so the only color on screen is the one you picked
- * and nothing around it skews how you see it. The selected color swatch is
- * the one bold element; everything else stays quiet.
- *
- * Themes: light tokens by default, dark tokens when the system prefers dark
- * (unless the user chose light), or when the user chose dark.
+ * Design rule: a strictly black-and-white interface. Pure white with black
+ * text, or pure black with white text when the system is in dark mode (there
+ * is no manual switch). Greys are used only for hairlines and secondary text,
+ * so the color you picked is the only color on screen. The selected color
+ * swatch is the one bold element; everything else stays quiet.
  */
 
 :root {
   color-scheme: light;
 
-  --bg: #ececec;
-  --surface: #f7f7f7;
-  --surface-2: #e1e1e1;
-  --ink: #1c1c1c;
-  --muted: #565656;
-  --line: #cdcdcd;
-  --line-strong: #9a9a9a;
-  --danger: #a3261b;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f0f0f0;
+  --ink: #000000;
+  --muted: #4d4d4d;
+  --line: #d6d6d6;
+  --line-strong: #000000;
+  --danger: #000000;
   --focus-inner: #ffffff;
-  --focus-outer: #1c1c1c;
+  --focus-outer: #000000;
 
   --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-value: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
@@ -50,33 +48,19 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root {
     color-scheme: dark;
-    --bg: #262626;
-    --surface: #2f2f2f;
-    --surface-2: #3b3b3b;
-    --ink: #eeeeee;
-    --muted: #ababab;
-    --line: #474747;
-    --line-strong: #7a7a7a;
-    --danger: #ff9b8f;
-    --focus-inner: #262626;
-    --focus-outer: #eeeeee;
+    --bg: #000000;
+    --surface: #000000;
+    --surface-2: #161616;
+    --ink: #ffffff;
+    --muted: #b3b3b3;
+    --line: #3a3a3a;
+    --line-strong: #ffffff;
+    --danger: #ffffff;
+    --focus-inner: #000000;
+    --focus-outer: #ffffff;
   }
-}
-
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #262626;
-  --surface: #2f2f2f;
-  --surface-2: #3b3b3b;
-  --ink: #eeeeee;
-  --muted: #ababab;
-  --line: #474747;
-  --line-strong: #7a7a7a;
-  --danger: #ff9b8f;
-  --focus-inner: #262626;
-  --focus-outer: #eeeeee;
 }
 
 /* ---------- Base ---------- */
@@ -226,7 +210,7 @@ input {
 }
 
 .button--danger {
-  color: var(--danger);
+  border-style: dashed;
 }
 
 .button--wide {
@@ -263,46 +247,6 @@ input {
   font-size: var(--step-2);
   font-weight: 700;
   letter-spacing: -0.02em;
-}
-
-.theme-switch fieldset {
-  display: flex;
-  margin: 0;
-  padding: 3px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--surface);
-}
-
-.theme-switch label {
-  position: relative;
-}
-
-.theme-switch input {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  margin: 0;
-  cursor: pointer;
-}
-
-.theme-switch span {
-  display: block;
-  padding: 0.35rem 0.85rem;
-  border-radius: 999px;
-  font-size: var(--step--1);
-  font-weight: 550;
-  color: var(--muted);
-}
-
-.theme-switch input:checked + span {
-  background: var(--ink);
-  color: var(--bg);
-}
-
-.theme-switch input:focus-visible + span {
-  outline: 2px solid var(--focus-outer);
-  outline-offset: 2px;
 }
 
 /* ---------- Workspace layout ---------- */
@@ -461,14 +405,19 @@ input {
 }
 
 .color-entry input[aria-invalid="true"] {
-  border-color: var(--danger);
-  box-shadow: inset 0 0 0 1px var(--danger);
+  border-color: var(--ink);
+  border-style: dashed;
+  box-shadow: inset 0 0 0 1px var(--ink);
 }
 
 .field-error {
-  color: var(--danger);
+  color: var(--ink);
   font-size: var(--step--1);
-  font-weight: 550;
+  font-weight: 650;
+}
+
+.field-error::before {
+  content: "⚠ ";
 }
 
 .eyedropper {
@@ -849,8 +798,8 @@ input {
 }
 
 .toast.is-error {
-  background: var(--danger);
-  color: var(--surface);
+  outline: 2px solid var(--bg);
+  outline-offset: -5px;
 }
 
 .noscript {

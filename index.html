@@ -10,7 +10,6 @@
     />
     <title>PickColor — color picker in your browser</title>
     <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />
-    <script src="./js/theme-init.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="stylesheet" href="./css/responsive.css" />
     <!-- Plain deferred scripts (not modules), so the page also works when opened
@@ -20,7 +19,6 @@
     <script defer src="./js/eyedropper.js"></script>
     <script defer src="./js/image-picker.js"></script>
     <script defer src="./js/palette.js"></script>
-    <script defer src="./js/theme.js"></script>
     <script defer src="./js/app.js"></script>
   </head>
   <body>
@@ -32,14 +30,6 @@
         <h1>PickColor</h1>
       </div>
 
-      <form class="theme-switch" id="theme-form" aria-label="Theme">
-        <fieldset>
-          <legend class="visually-hidden">Theme</legend>
-          <label><input type="radio" name="theme" value="system" checked /><span>System</span></label>
-          <label><input type="radio" name="theme" value="light" /><span>Light</span></label>
-          <label><input type="radio" name="theme" value="dark" /><span>Dark</span></label>
-        </fieldset>
-      </form>
     </header>
 
     <main id="main" class="workspace" tabindex="-1">

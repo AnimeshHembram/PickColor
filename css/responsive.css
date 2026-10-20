@@ -25,10 +25,6 @@
     font-size: var(--step-1);
   }
 
-  .theme-switch span {
-    padding: 0.3rem 0.6rem;
-  }
-
   .workspace {
     gap: var(--space-4);
     padding: 0 var(--space-4) var(--space-5);
@@ -82,12 +78,5 @@
 
   .footer {
     padding: 0 var(--space-4) var(--space-5);
-  }
-}
-
-/* Very narrow screens (320 px): let the theme switch wrap under the name */
-@media (max-width: 360px) {
-  .masthead {
-    flex-wrap: wrap;
   }
 }

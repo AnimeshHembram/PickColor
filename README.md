@@ -12,7 +12,7 @@ A small, private color picker that runs in your browser. Pick a color, get its H
 - **Pick from anywhere on screen** in browsers that support the EyeDropper feature (currently Chrome and Edge on desktop). Other browsers show a note and keep image sampling as the alternative.
 - **Check text contrast**: see the WCAG contrast ratio for white and black text on the selected color.
 - **Recent colors** for the current visit, and a **palette** you can name and export as CSS variables or JSON. The palette is saved in your browser only.
-- **Light and dark themes** that follow your system setting, with a manual override.
+- **Black-and-white interface**: white with black text, or black with white text when your device is in dark mode. It follows your system setting automatically; there's no switch.
 - **Shareable links**: the address bar keeps the current color (for example `…/#3A6FF7`).
 
 ## Run it locally
@@ -31,20 +31,19 @@ PickColor is plain HTML, CSS and JavaScript with nothing to install or build.
 - **In a browser:** open `tests/index.html` (double-click it, or visit <http://localhost:8000/tests/> with the server running).
 - **From the command line (optional, Node.js 18 or newer):** `node tests/run.mjs`
 
-Manual checks for image sampling, themes, clipboard and the eyedropper are listed in [docs/TESTING.md](docs/TESTING.md). Sample images for those checks are in `tests/fixtures/`.
+Manual checks for image sampling, theme, clipboard and the eyedropper are listed in [docs/TESTING.md](docs/TESTING.md). Sample images for those checks are in `tests/fixtures/`.
 
 ## Project layout
 
 ```text
 index.html          App shell
-css/styles.css      Design tokens, light/dark themes, components
+css/styles.css      Design tokens, black/white themes, components
 css/responsive.css  Narrow-screen adjustments
 js/app.js           Wires the UI together
 js/color-utils.js   Color parsing, conversion and contrast (pure functions)
 js/image-picker.js  Local image loading and pixel sampling
 js/eyedropper.js    Optional screen eyedropper
 js/palette.js       Recent colors, palette storage and export
-js/theme.js         Theme preference (theme-init.js applies it before first paint)
 js/clipboard.js     Copy with fallback
 tests/              Browser-native tests and fixtures
 docs/               Brief, architecture, roadmap, testing checklist
@@ -54,7 +53,7 @@ More detail is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Privacy
 
-PickColor has no backend, analytics, trackers, remote fonts or external requests. Images are decoded in your browser and never uploaded. Your theme choice and palette are stored only in this browser's local storage.
+PickColor has no backend, analytics, trackers, remote fonts or external requests. Images are decoded in your browser and never uploaded. Your palette is stored only in this browser's local storage.
 
 ## Deploying to GitHub Pages
 

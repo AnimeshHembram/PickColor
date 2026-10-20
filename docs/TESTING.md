@@ -48,8 +48,7 @@ Each fixture has four colored quadrants, a different dark grey in each corner pi
 - [ ] Clear palette asks for a second click.
 
 ### Theme and accessibility
-- [ ] With no choice saved, the theme follows the operating system setting.
-- [ ] Choosing Light or Dark persists after a reload; System goes back to following the OS.
+- [ ] With the operating system in light mode the page is white with black text; in dark mode it is black with white text. There is no theme switch.
 - [ ] Everything can be reached and used with the keyboard, and the focus outline is always visible.
 - [ ] With "reduce motion" turned on in the OS, transitions are effectively instant.
 - [ ] A screen reader announces copy, pick and error messages.

@@ -15,10 +15,10 @@
 - [x] Implement responsive workspace and accessible controls.
 - [x] Define CSS design tokens for light and dark themes.
 - [x] Respect system preference by default.
-- [x] Add manual theme toggle and safe persistence.
+- [x] ~~Add manual theme toggle and safe persistence.~~ Removed by request: the theme is black and white and follows the system setting.
 - [x] Verify keyboard focus and reduced-motion behavior.
 
-**Exit criteria:** the static site opens locally, renders at mobile/desktop widths, and theme switching works.
+**Exit criteria:** the static site opens locally, renders at mobile/desktop widths, and follows the system light/dark setting.
 
 ## Phase 2 — Core color workspace
 - [x] Implement a color preview and visual color input.

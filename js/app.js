@@ -14,7 +14,6 @@
   const { isEyeDropperSupported, pickFromScreen } = PickColor.eyedropper;
   const { createImageSampler } = PickColor.imagePicker;
   const { createPalette, createRecentColors, paletteToCss, paletteToJson } = PickColor.palette;
-  const { initThemeControl } = PickColor.theme;
 
   const DEFAULT_COLOR = { r: 58, g: 111, b: 247 }; // #3A6FF7
 
@@ -55,7 +54,6 @@
     exportJsonDownload: $("#export-json-download"),
     paletteClear: $("#palette-clear"),
     status: $("#status"),
-    themeForm: $("#theme-form"),
   };
 
   const state = {
@@ -529,7 +527,6 @@
 
   /* ---------- Start ---------- */
 
-  initThemeControl(el.themeForm);
   setColor(colorFromHash() ?? DEFAULT_COLOR, { remember: false });
   renderRecent(recent.list());
   renderPalette(palette.items());
